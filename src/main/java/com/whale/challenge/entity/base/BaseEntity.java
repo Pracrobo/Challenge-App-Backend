@@ -21,12 +21,12 @@ import javax.persistence.MappedSuperclass;
 public class BaseEntity extends BaseTimeEntity {
 
 	@CreatedBy
-	@Column(name = "INS_USER_ID", updatable = false, length = 20)
+	@Column(updatable = false, length = 20)
 	@Comment("등록자")
 	private String insUserId;
 
 	@LastModifiedBy
-	@Column(name = "UPD_USER_ID", length = 20)
+	@Column(length = 20)
 	@Comment("수정자")
 	private String updUserId;
 

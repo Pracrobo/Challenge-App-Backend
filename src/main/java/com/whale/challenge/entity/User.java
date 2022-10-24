@@ -27,7 +27,7 @@ public class User extends BaseTimeEntity {
 
 	@Column(length = 30, nullable = false)
 	@Comment("패스워드")
-	private String password;
+	private String userPass;
 
 	@Column(length = 5, nullable = false)
 	@Comment("사용자 명")

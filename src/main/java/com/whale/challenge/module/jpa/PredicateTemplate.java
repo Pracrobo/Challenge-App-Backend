@@ -4,22 +4,14 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.*;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.Id;
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
-
-import static java.util.stream.Collectors.toMap;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PredicateTemplate {
@@ -183,50 +175,6 @@ public class PredicateTemplate {
 		}
 
 		return this;
-
-	}
-
-	public static <QE extends EntityPathBase<E>, E> void DynamicUpdate(E Entity, QE QEntity, JPAQueryFactory queryFactory) throws IllegalAccessException {
-
-		PathBuilder<E> QEntityPath = new PathBuilder<>(QEntity.getType(), QEntity.getMetadata());
-
-		Class<E> entityClass = (Class<E>) Entity.getClass();
-		List<Field> fields = Arrays.asList(entityClass.getDeclaredFields());
-		fields.forEach(f -> f.setAccessible(true));
-
-		AtomicReference<Field> idFieldRefer = null;
-
-		Map<PathBuilder<?>, Object> collect = fields.stream()
-				.filter(f -> {
-//				f.setAccessible(true);
-					try {
-						if (f.getDeclaredAnnotation(Id.class) != null) {
-							idFieldRefer.set(f);
-						}
-						return f.getDeclaredAnnotation(Id.class) == null && f.get(Entity) != null;
-					} catch (IllegalArgumentException | IllegalAccessException e) {
-						e.printStackTrace();
-					}
-					return false;
-				})
-				.collect(toMap(
-						f -> QEntityPath.get(f.getName()),
-						f -> {
-							try {
-								return f.get(Entity);
-							} catch (IllegalArgumentException | IllegalAccessException e) {
-								e.printStackTrace();
-							}
-							return f;
-						}
-				));
-
-		Field idField = idFieldRefer.get();
-
-		queryFactory.update(QEntityPath)
-				.where(QEntityPath.get(idField.getName()).eq(idField.get(entityClass)))
-				.set(new ArrayList<>(collect.keySet()), new ArrayList<>(collect.values()))
-				.execute();
 
 	}
 

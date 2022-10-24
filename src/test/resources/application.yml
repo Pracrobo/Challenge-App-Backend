@@ -28,6 +28,8 @@ spring:
   config:
     activate:
       on-profile: master
+  thymeleaf:
+    enabled: false
 jwt:
   accessTokenValidity: 3d
   refreshTokenValidity: 5d
@@ -41,7 +43,7 @@ springdoc:
     default-models-expand-depth: -1
 
 logging:
-  config: classpath:logback-spring.xml
+  config: classpath:logback-spring».xml
   charset:
     console: UTF-8
     file: UTF-8
@@ -81,6 +83,8 @@ spring:
   config:
     activate:
       on-profile: develop
+  thymeleaf:
+    enabled: false
 jwt:
   accessTokenValidity: 3d
   refreshTokenValidity: 5d

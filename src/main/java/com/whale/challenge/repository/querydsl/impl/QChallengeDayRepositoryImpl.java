@@ -1,7 +1,7 @@
-package com.whale.challenge.repository.QRepository.impl;
+package com.whale.challenge.repository.querydsl.impl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.whale.challenge.repository.QRepository.QChallengeDayRepository;
+import com.whale.challenge.repository.querydsl.QChallengeDayRepository;
 
 import javax.persistence.EntityManager;
 
