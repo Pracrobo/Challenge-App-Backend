@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: master
   application:
     name: challenge-app-backend
   devtools:
@@ -27,6 +25,9 @@ spring:
     host: 127.0.0.1
     port: 6379
     password: khb0915
+  config:
+    activate:
+      on-profile: master
 jwt:
   accessTokenValidity: 3d
   refreshTokenValidity: 5d
@@ -79,6 +80,9 @@ spring:
     host: 127.0.0.1
     port: 6379
     password: khb0915
+  config:
+    activate:
+      on-profile: develop
 jwt:
   accessTokenValidity: 3d
   refreshTokenValidity: 5d
