@@ -32,6 +32,10 @@ public class ChallengeDay extends BaseEntity {
 	@Comment("챌린지 일자 콘텐츠 ID")
 	private Integer challengeDayId;
 
+	@Column(length = 2, nullable = false)
+	@Comment("정렬 순서")
+	private Integer order;
+
 	@Column(nullable = false)
 	@Comment("스탬프 여부")
 	private Boolean stampYn;

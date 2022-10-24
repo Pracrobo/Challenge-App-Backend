@@ -1,7 +1,6 @@
 package com.whale.challenge.service;
 
 import com.whale.challenge.repository.ChallengeDayRepository;
-import com.whale.challenge.repository.ChallengeDetailRepository;
 import com.whale.challenge.repository.ChallengeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +13,5 @@ public class ChallengeService {
 
 	private final ChallengeRepository challengeRepository;
 	private final ChallengeDayRepository challengeDayRepository;
-	private final ChallengeDetailRepository challengeDetailRepository;
 
 }

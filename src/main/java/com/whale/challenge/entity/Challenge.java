@@ -69,9 +69,4 @@ public class Challenge extends BaseEntity {
 	@JsonManagedReference
 	private List<ChallengeDay> challengeDays = new ArrayList<>();
 
-	@Builder.Default
-	@OneToMany(mappedBy = "challenge", orphanRemoval = true, cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<ChallengeDetail> challengeDetails = new ArrayList<>();
-
 }
