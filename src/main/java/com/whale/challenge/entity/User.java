@@ -56,11 +56,15 @@ public class User extends BaseTimeEntity {
 	private LocalDate birthDate;
 
 	@Column(nullable = false)
-	@Comment("본인 확인용 정보 수집 - 이메일 양관 동의 여부")
+	@Comment("본인 확인용 정보 수집 - 이메일 약관 동의 여부")
 	private Boolean emailTermsAgreeYn;
 
 	@Column(nullable = false)
-	@Comment("본인 확인용 정보 수집 - 휴대폰 번호 양관 동의 여부")
+	@Comment("본인 확인용 정보 수집 - 휴대폰 번호 약관 동의 여부")
 	private Boolean phoneNoTermsAgreeYn;
+
+	@Column(nullable = false)
+	@Comment("알람 수신 여부")
+	private Boolean fcmYn;
 
 }

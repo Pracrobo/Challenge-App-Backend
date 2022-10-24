@@ -29,14 +29,14 @@ public class BaseTimeEntity {
 	@CreatedDate
 	@JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
 	@JsonSerialize(using = CustomLocalDateTimeSerializer.class)
-	@Column(columnDefinition = "DATETIME", name = "INS_DTM", updatable = false)
+	@Column(updatable = false)
 	@Comment("등록 일시")
 	private LocalDateTime insDtm;
 
 	@LastModifiedDate
 	@JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
 	@JsonSerialize(using = CustomLocalDateTimeSerializer.class)
-	@Column(columnDefinition = "DATETIME", name = "UPD_DTM")
+	@Column
 	@Comment("수정 일시")
 	private LocalDateTime updDtm;
 
