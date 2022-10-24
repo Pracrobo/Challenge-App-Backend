@@ -4,6 +4,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+/src/main/generated
+/challenge-log(master)
+/challenge-log(develop)
 
 ### STS ###
 .apt_generated
