@@ -1,5 +1,8 @@
 package com.whale.challenge.service;
 
+import com.whale.challenge.repository.ChallengeDayRepository;
+import com.whale.challenge.repository.ChallengeDetailRepository;
+import com.whale.challenge.repository.ChallengeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ChallengeService {
 
-
+	private final ChallengeRepository challengeRepository;
+	private final ChallengeDayRepository challengeDayRepository;
+	private final ChallengeDetailRepository challengeDetailRepository;
 
 }

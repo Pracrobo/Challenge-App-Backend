@@ -11,7 +11,7 @@ import java.time.Duration;
 @AllArgsConstructor
 public enum ChallengeDayType {
 
-	A("15일", Duration.ofDays(15)), B("30일", Duration.ofDays(30));
+	HALF_MONTH("15일", Duration.ofDays(15)), ONE_MONTH("30일", Duration.ofDays(30));
 
 	private String typeNm;
 	private Duration duration;
