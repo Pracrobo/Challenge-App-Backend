@@ -19,7 +19,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @Component
 public class AES256Util {
 
-	private static final String CIPHER_ALGORITHM = "AES/ECB/PKCS7Padding";
+	private static final String CIPHER_ALGORITHM = "AES/CBC/PKCS5Padding";
 
 	@PostConstruct
 	public void init() {
@@ -38,15 +38,14 @@ public class AES256Util {
 			return plainText;
 		}
 
+		Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+
 		byte[] keyBytes = key.getBytes(UTF_8);
-		byte[] cipherTextBytes = Base64.decodeBase64(cipherText.getBytes(UTF_8));
-		Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM, "BC");
-//		int blockSize = cipher.getBlockSize();
-//		IvParameterSpec ivParamSpec = new IvParameterSpec(Arrays.copyOfRange(keyBytes, 0, blockSize));
-//
 		SecretKeySpec secureKey = new SecretKeySpec(keyBytes, "AES");
-//		cipher.init(Cipher.DECRYPT_MODE, secureKey, ivParamSpec);
-		cipher.init(Cipher.DECRYPT_MODE, secureKey);
+		IvParameterSpec ivParamSpec = new IvParameterSpec(key.substring(0,16).getBytes(UTF_8));
+
+		cipher.init(Cipher.DECRYPT_MODE, secureKey , ivParamSpec);
+		byte[] cipherTextBytes = Base64.decodeBase64(cipherText.getBytes(UTF_8));
 		byte[] decrypted = cipher.doFinal(cipherTextBytes);
 
 		plainText = new String(decrypted, UTF_8);
